@@ -28,6 +28,12 @@ end
 def index
  @chefs = Chef.paginate(page: params[:page], per_page: 5)
 end
+def destroy
+   @chef = Chef.find(params[:id])
+   @chef.destroy
+   flash[:danger] = "successfully delete the chef"
+   redirect_to chefs_path
+end
 
 
  private
