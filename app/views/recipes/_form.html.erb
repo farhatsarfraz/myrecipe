@@ -1,5 +1,5 @@
 <%= render 'shared/errors', obj: @recipe %> 
-<div class="row">
+ <div class="row">
   <div class="col-md-12">
     <%= form_for(@recipe, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="form-group">
@@ -27,5 +27,5 @@
       [ <%= link_to "Cancel request and return to recipes", recipes_path %> ]
          <% end %>
     </div>
-  </div>
-  </div>
+   </div>
+</div>        

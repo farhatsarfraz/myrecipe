@@ -8,4 +8,6 @@ validates :email, presence: true, length: { maximum: 35 },
        uniqueness: { case_sensitive: false}
 
 has_many :recipes
+has_secure_password
+validates :password, presence: true, length: {maximum: 15}
 end
