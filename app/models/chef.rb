@@ -9,5 +9,5 @@ validates :email, presence: true, length: { maximum: 35 },
 
 has_many :recipes
 has_secure_password
-validates :password, presence: true, length: {maximum: 15}
+validates :password, presence: true, length: {minimum: 15}, allow_nil: "true"
 end
