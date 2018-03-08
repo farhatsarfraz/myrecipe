@@ -1,18 +1,2 @@
-<h1 align = "center">Listing all recipes</h1>
-<hr />
-<% @recipes.each do |recipe| %>
-    <div class="row">
-       <div class="col-md-2">
-          <section class="center">
-           </section>
-       </div>
-       <div class="col-md-8 well">
-          <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
-          <h4><%= recipe.description %></h4>
-          <p>
-          <div class="quiet"> <small><%= time_ago_in_words(recipe.created_at) %></small>
-          </div>  
-           </p>
-       </div>
-    </div>
-<% end %>
+<%= render 'shared/page_title', title: "showing all recipes" %>
+<%= render 'recipe', obj: @recipes %>
