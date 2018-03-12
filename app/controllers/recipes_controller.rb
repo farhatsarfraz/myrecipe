@@ -47,6 +47,12 @@ class RecipesController < ApplicationController
     def recipe_params
         params.require(:recipe).permit(:name, :description)
     end
+    def require_same_user
+        if current_chef != @recipe.chef and !current_chef.admin?
+            flash[:danger] = "you can only edit and delete my recipe"
+            redirect_to recipes_path
+        end
+    end
 
 
 end
