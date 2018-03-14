@@ -8,9 +8,11 @@
      <li><%= link_to gravatar_for(chef), chef_path(chef) %></li>
      <li class="chef-title"><%= link_to chef.chefname.capitalize, chef_path(chef)%></li>
      <li><small><%= pluralize(chef.recipes.count, "recipes") if chef.recipes %></small> </li>    
+     <% if logged_in? && current_chef.admin && !chef.admin? %>
      <li><%= link_to "delete this chef", chef_path(chef), method: :delete, 
         data: {confirm: "are you sure you want to delete the chef and its associations?"} %></li>
-     </div>
+     <% end %>
+    </div>
    </div>
   </ul>
   <% end %> 
