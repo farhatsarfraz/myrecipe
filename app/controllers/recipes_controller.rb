@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
      @recipe = Recipe.find(params[:id]) 
     end
     def recipe_params
-        params.require(:recipe).permit(:name, :description)
+        params.require(:recipe).permit(:name, :description, ingredients_ids: [])
     end
     def require_same_user
         if current_chef != @recipe.chef and !current_chef.admin?
