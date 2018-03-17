@@ -41,7 +41,7 @@ private
     @ingredient = Ingredient.find(params[:id])
  end
  def require_admin
-    if logged_in? && !current_chef.admin?
+    if !logged_in? || (logged_in? and !current_chef.admin?)
         flash[:danger] = "only admin can do this"
             redirect_to @ingredient
         else render 'edit'

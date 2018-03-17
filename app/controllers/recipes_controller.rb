@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-    before_action :set_recipe, only: [:show, :edit, :update]
+    before_action :set_recipe, only: [:show, :edit, :update, :destroy]
     before_action :require_user, only: [:index, :show]
     before_action :require_same_user, only: [:edit, :update, :destroy]
     
@@ -8,7 +8,8 @@ class RecipesController < ApplicationController
     end
 
     def show
-         
+        @comment = Comment.new
+       @comments = @recipe.comments.paginate(page: params[:page], per_page: 3)  
     end 
 
     def new
@@ -46,12 +47,12 @@ class RecipesController < ApplicationController
      @recipe = Recipe.find(params[:id]) 
     end
     def recipe_params
-        params.require(:recipe).permit(:name, :description, ingredients_ids: [])
+        params.require(:recipe).permit(:name, :description, ingredient_ids: [])
     end
     def require_same_user
         if current_chef != @recipe.chef and !current_chef.admin?
-            flash[:danger] = "you can only edit and delete my recipe"
-            redirect_to recipes_path
+         flash[:danger] = "you can only edit and delete my recipe"
+         redirect_to recipes_path
         end
     end
 

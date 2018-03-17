@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'pages#home'
   get 'pages/home'
-  resources :recipes
+  resources :recipes do
+    resources :comments, only: [:create]
+  end
   get '/signup', to: 'chefs#new'
   resources :chefs, except: [:new]
   
@@ -10,5 +12,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#delete'
    
   resources :ingredients, except: [:destroy]
+  
    
 end
